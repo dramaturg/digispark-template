@@ -58,7 +58,5 @@ inline void rotaryEncoderSetup()
 
 inline void rotaryEncoderTick()
 {
-  if (encoderPos != encoderNewPos) {
-    encoderPos = encoderNewPos;
-  }
+  encoderPos = encoderNewPos;
 }
