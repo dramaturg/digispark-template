@@ -2,6 +2,7 @@
 // Some Digisparks have a built-in LED on pin 0, while some have it on pin 1.
 #define PinLEDInternal 0
 
+#include <Arduino.h>
 #include <sleep.h>
 
 void pingInternalLED(uint8_t flashes, int delayMs)

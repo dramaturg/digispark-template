@@ -2,16 +2,21 @@
 #include <EnableInterrupt.h>
 #include <avr/sleep.h>
 
-void wakeUp(){
+uint8_t sleepWakeUpPin;
+
+void wakeUpFromPin()
+{
     sleep_disable();
-    disableInterrupt(INT0);
+    disableInterrupt(sleepWakeUpPin);
 }
 
-void goSleep()
+void goSleepUntilPin(uint8_t pin)
 {
+    sleepWakeUpPin = pin;
+
     // preparation
     sleep_enable();
-    enableInterrupt(INT0, wakeUp, CHANGE);
+    enableInterrupt(pin, wakeUpFromPin, CHANGE);
     set_sleep_mode(SLEEP_MODE_PWR_DOWN);
 
     // sleep until interrupt
